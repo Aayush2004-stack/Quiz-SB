@@ -2,13 +2,18 @@ package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
-@Table(name = "score")
+@Table(name = "scores")
 public class Score {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scoreId; //pk
+
+    private int score;
+    private Date playedDate;
 
     // many scores belong to one user
     @ManyToOne

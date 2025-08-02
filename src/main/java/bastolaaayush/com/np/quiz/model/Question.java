@@ -3,7 +3,7 @@ package bastolaaayush.com.np.quiz.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "question")
+@Table(name = "questions")
 public class Question {
 
     @Id

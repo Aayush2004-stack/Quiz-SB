@@ -2,6 +2,8 @@ package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -10,10 +12,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;//Pk
 
-    private String name;
+    private String fullName;
     private String username;
     private String password;
     private boolean isAdmin;
+    private Date joinedDate;
+
+    public Date getJoinedDate() {
+        return joinedDate;
+    }
+
+    public void setJoinedDate(Date joinedDate) {
+        this.joinedDate = joinedDate;
+    }
 
     public int getUserId() {
         return userId;
@@ -23,12 +34,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String name) {
+        this.fullName = name;
     }
 
     public String getUsername() {

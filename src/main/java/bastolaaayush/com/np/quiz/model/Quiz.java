@@ -2,28 +2,38 @@ package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
-@Table(name = "quiz")
+@Table(name = "quizzes")
 public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int quizId; //Pk
 
-    private String name;
-    private String category;
+    private String quizName;
+    private String quizDescription;
+    private int noOfQuestionsToPlay;
+    private boolean status;
+    private Date createdDate;
 
     // many quizzes belong to one user
     @ManyToOne
-    @JoinColumn(name = "UserID", nullable = false)
+    @JoinColumn(name = "userID", nullable = false)
     private User user; //userId is the fk so getting user as an object to get userId
 
-    public String getName() {
-        return name;
+    // many quizzes belong to one category
+    @ManyToOne
+    @JoinColumn(name = "categoryId",nullable = false)
+    private Category category; //category is the fk so getting category as an object to get quizId
+
+    public String getQuizName() {
+        return quizName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
     }
 
     public int getQuizId() {
@@ -34,19 +44,51 @@ public class Quiz {
         this.quizId = quizId;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getQuizDescription() {
+        return quizDescription;
+    }
+
+    public void setQuizDescription(String quizDescription) {
+        this.quizDescription = quizDescription;
+    }
+
+    public int getNoOfQuestionsToPlay() {
+        return noOfQuestionsToPlay;
+    }
+
+    public void setNoOfQuestionsToPlay(int noOfQuestionsToPlay) {
+        this.noOfQuestionsToPlay = noOfQuestionsToPlay;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
