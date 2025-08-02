@@ -5,6 +5,7 @@ import bastolaaayush.com.np.quiz.repositories.UserRepository;
 import bastolaaayush.com.np.quiz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,16 @@ public class UserController {
         user.setPassword(password);
         userService.insertUser(user);
 
+    }
+    @GetMapping("/logIn")
+    public void logIn(@RequestParam String username, @RequestParam String password){
+        User user = userService.logIn(username, password);
+        if(user!=null){
+            System.out.println("Login success");
+        }
+        else{
+            System.out.println("Failed logging in");
+        }
 
     }
 }
