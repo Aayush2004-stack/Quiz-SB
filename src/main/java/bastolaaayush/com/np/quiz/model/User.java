@@ -15,7 +15,12 @@ public class User {
     private String fullName;
     private String username;
     private String password;
-    private boolean isAdmin;
+
+    //has default value
+    @Column(name = "isAdmin", insertable = false )
+    private Boolean isAdmin;
+
+    @Column(name = "joinedDate", insertable = false)
     private Date joinedDate;
 
     public Date getJoinedDate() {
