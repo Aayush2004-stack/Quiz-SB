@@ -15,7 +15,7 @@ public class Quiz {
     private String quizName;
     private String quizDescription;
     private int noOfQuestionsToPlay;
-    private boolean status;
+    private Boolean status;
     private Date createdDate;
 
     // many quizzes belong to one user
@@ -68,7 +68,7 @@ public class Quiz {
         this.noOfQuestionsToPlay = noOfQuestionsToPlay;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
