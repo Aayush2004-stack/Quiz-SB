@@ -27,19 +27,19 @@ public class UserController {
 
     }
     @GetMapping("/logIn")
-    public void logIn(@RequestParam String username, @RequestParam String password){
+    public String logIn(@RequestParam String username, @RequestParam String password){
         User user = userService.logIn(username, password);
         if(user!=null){
             System.out.println("Login success");
             if(user.isAdmin()){
-                // return to admin page
+                return "adminPage";
             }
             else {
-                //return to user page
+                return "userPage";
             }
         }
         else{
-            System.out.println("Failed logging in");
+            return "Failed logging in";
         }
 
     }
