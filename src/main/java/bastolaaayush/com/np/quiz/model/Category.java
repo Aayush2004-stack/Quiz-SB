@@ -14,6 +14,8 @@ public class Category {
 
     private String categoryName;
     private String categoryDescription;
+
+    @Column(name = "createdDate", insertable = false)
     private Date createdDate;
 
     public int getCategoryId() {
