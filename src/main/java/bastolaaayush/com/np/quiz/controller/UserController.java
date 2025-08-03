@@ -31,6 +31,12 @@ public class UserController {
         User user = userService.logIn(username, password);
         if(user!=null){
             System.out.println("Login success");
+            if(user.isAdmin()){
+                // return to admin page
+            }
+            else {
+                //return to user page
+            }
         }
         else{
             System.out.println("Failed logging in");
