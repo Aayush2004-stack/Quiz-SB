@@ -16,11 +16,13 @@ public class Quiz {
     private String quizDescription;
     private int noOfQuestionsToPlay;
     private Boolean status;
+
+    @Column(name ="createdDate", insertable = false)
     private Date createdDate;
 
     // many quizzes belong to one user
     @ManyToOne
-    @JoinColumn(name = "userID", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user; //userId is the fk so getting user as an object to get userId
 
     // many quizzes belong to one category
