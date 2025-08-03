@@ -11,8 +11,12 @@ public class ViewController {
         return "home";
     }
     @GetMapping("/signUpView")
-    public String showLoginPage(){
+    public String showSignUpPage(){
         return "signUp";
+    }
+    @GetMapping("/logInView")
+    public String showLoginPage(){
+        return "logIn";
     }
 
 
