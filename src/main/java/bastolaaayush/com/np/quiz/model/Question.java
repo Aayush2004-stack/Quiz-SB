@@ -11,8 +11,8 @@ public class Question {
     private int questionId;//Pk
 
     private String title;
-    private String option1, option2, option3, option4;
-    private int correctOption ;
+    private String option1, option2, option3;
+    private String correctOption ;
 
     // many questions belong to one quiz
     @ManyToOne
@@ -59,19 +59,11 @@ public class Question {
         this.option3 = option3;
     }
 
-    public String getOption4() {
-        return option4;
-    }
-
-    public void setOption4(String option4) {
-        this.option4 = option4;
-    }
-
-    public int getCorrectOption() {
+    public String getCorrectOption() {
         return correctOption;
     }
 
-    public void setCorrectOption(int correctOption) {
+    public void setCorrectOption(String correctOption) {
         this.correctOption = correctOption;
     }
 
