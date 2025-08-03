@@ -15,6 +15,8 @@ public class Quiz {
     private String quizName;
     private String quizDescription;
     private int noOfQuestionsToPlay;
+
+    @Column(name = "status", insertable = false)
     private Boolean status;
 
     @Column(name ="createdDate", insertable = false)
