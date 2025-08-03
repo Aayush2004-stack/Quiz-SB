@@ -7,24 +7,25 @@
 </head>
 <body>
  <div class="form-container">
-            <form action="${pageContext.request.contextPath}/user/logIn" method="post">
+            <form action="${pageContext.request.contextPath}/user/signUp" method="post">
             <h1 class ="text-4xl font-bold mb-8 text-center text-navy-800">Enter Customer Details</h1>
 
 
 
-                <label for="userName">Name:</label><br>
-                <input type="text" id="userName" name="userName" required><br>
+                <label for="fullName">Name:</label><br>
+                <input type="text" id="fullName" name="fullName" required><br>
 
-                <label for="houseNumber">username:</label><br>
+                <label for="username">username:</label><br>
                 <input type="username" id="username" name="username" required><br>
 
-                <label for="unitsConsumed">Password:</label><br>
+                <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password" required><br>
 
-                <input type="submit" value="LogIn">
+                <input type="submit" value="Sign Up">
+                <br>
             </form>
         </div>
-
-login here
+<h1>Already have an account?  </h1>
+<button> <a href="${pageContext.request.contextPath}/logInView"> Log In </a></button>
 </body>
 </html>
