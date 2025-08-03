@@ -6,6 +6,12 @@
     <title>$</title>
 </head>
 <body>
+<h1> Welcome User(name)</h1>
+<br>
+<br>
+<h1>Create a Quiz  </h1>
+<button> <a href="${pageContext.request.contextPath}/category/getCategories"> Create Quiz </a></button>
+
 
 </body>
 </html>

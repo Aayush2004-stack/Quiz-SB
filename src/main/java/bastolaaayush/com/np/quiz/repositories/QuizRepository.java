@@ -1,4 +1,7 @@
 package bastolaaayush.com.np.quiz.repositories;
 
-public interface QuestionRepository {
+import bastolaaayush.com.np.quiz.model.Quiz;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 }
