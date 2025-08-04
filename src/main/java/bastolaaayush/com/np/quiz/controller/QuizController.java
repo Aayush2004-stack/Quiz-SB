@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,6 +40,18 @@ public class QuizController {
 
         quizService.insertQuiz(quiz);
     }
+
+    @GetMapping("/getQuiz")
+    public String getQuizByUserId(HttpSession session, Model model){
+        User user =(User) session.getAttribute("user");
+
+        List<Quiz> quizzes= quizService.getQuizByUserId(user);
+        model.addAttribute("quizzes",quizzes);
+        return "quizzes";
+
+    }
+
+
 
 
 
