@@ -11,6 +11,8 @@
 <br>
 <h1>Create a Quiz  </h1>
 <button> <a href="${pageContext.request.contextPath}/category/getCategories"> Create Quiz </a></button>
+<br>
+<button> <a href="${pageContext.request.contextPath}/quiz/getQuiz"><h1> My Quizzes</h1></a></button>
 
 
 </body>
