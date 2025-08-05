@@ -28,7 +28,7 @@
                     <td class="border px-4 py-2">${quiz.quizName}</td>
                     <td class="border px-4 py-2">${quiz.quizDescription}</td>
                     <td class="border px-4 py-2">${quiz.noOfQuestionsToPlay}</td>
-                    <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/question/getQuestion"> See Questions</a></button></td>
+                    <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/question/getQuestion/${quiz.quizId}"> See Questions</a></button></td>
 
 
                 </tr>
