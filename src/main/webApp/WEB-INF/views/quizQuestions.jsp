@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <meta charset="UTF-8">
     <title>$</title>
 </head>
@@ -26,16 +27,18 @@
             <c:forEach var="question" items="${questions}">
                 <tr class="text-gray-800">
                     <td class="border px-4 py-2">${question.questionId}</td>
-                    <td class="border px-4 py-2">${question.questionTitle}</td>
-                    <td class="border px-4 py-2">${question.question.option1}</td>
-                    <td class="border px-4 py-2">${question.question.option2}</td>
-                    <td class="border px-4 py-2">${question.question.option3}</td>
-                    <td class="border px-4 py-2">${question.question.correctOption}</td>
+                    <td class="border px-4 py-2">${question.title}</td>
+                    <td class="border px-4 py-2">${question.option1}</td>
+                    <td class="border px-4 py-2">${question.option2}</td>
+                    <td class="border px-4 py-2">${question.option3}</td>
+                    <td class="border px-4 py-2">${question.correctOption}</td>
 
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+
+    <button> <a href="${pageContext.request.contextPath}/addQuestionView/${quizId}"> Add questions </a></button>
 </div>
 
 </body>
