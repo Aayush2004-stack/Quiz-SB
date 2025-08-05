@@ -1,8 +1,10 @@
 package bastolaaayush.com.np.quiz.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 public class ViewController {
@@ -17,6 +19,12 @@ public class ViewController {
     @GetMapping("/logInView")
     public String showLoginPage(){
         return "logIn";
+    }
+    @GetMapping("/addQuestionView/{quizId}")
+    public String showAddQuestionPage(@PathVariable int quizId, Model model){
+
+        model.addAttribute("quizId", quizId);
+        return "addQuestion";
     }
 
 
