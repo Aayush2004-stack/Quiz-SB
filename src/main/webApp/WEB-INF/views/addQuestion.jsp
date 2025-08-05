@@ -8,8 +8,10 @@
 <body>
  <form action="${pageContext.request.contextPath}/question/addQuestion" method="post">
 
-                <label for="questionTitle">Question title:</label><br>
-                <input type="text" name="questionTitle" required><br>
+                <input type="hidden" name="quizId" value="${quizId}" /><br>
+
+                <label for="title">Question title:</label><br>
+                <input type="text" name="title" required><br>
 
                 <label for="option1">Option 1:</label><br>
                 <input type="text" name="option1" required><br>

@@ -7,10 +7,7 @@ import bastolaaayush.com.np.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,9 +26,33 @@ public class QuestionController {
 
         Quiz quiz =quizController.getQuizById(quizId);
         List<Question> questions = questionService.getQuestionsByQuizId(quiz);
+        for(Question question: questions){
+            System.out.println(question.getQuestionId());
+
+        }
         model.addAttribute("questions", questions);
 
+
+
         return "quizQuestions";
+
+    }
+
+    @PostMapping("/addQuestion")
+    public void addQuestion(@RequestParam int quizId, @RequestParam String title, @RequestParam String option1,
+                            @RequestParam String option2,@RequestParam String option3,@RequestParam String correctOption){
+
+
+        Quiz quiz =quizController.getQuizById(quizId);
+        Question question = new Question();
+        question.setTitle(title);
+        question.setOption1(option1);
+        question.setOption2(option2);
+        question.setOption3(option3);
+        question.setCorrectOption(correctOption);
+        question.setQuiz(quiz);
+
+        questionService.addQuestion(question);
 
     }
 

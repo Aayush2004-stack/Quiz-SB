@@ -18,5 +18,9 @@ public class QuestionService {
         return questionRepository.findByQuiz(quiz);
     }
 
+    public void addQuestion(Question question){
+        questionRepository.save(question);
+    }
+
 
 }
