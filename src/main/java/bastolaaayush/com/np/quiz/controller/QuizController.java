@@ -51,6 +51,10 @@ public class QuizController {
 
     }
 
+    public Quiz getQuizById(int quizId){
+        return quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
+    }
+
 
 
 

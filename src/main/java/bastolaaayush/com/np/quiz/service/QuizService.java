@@ -23,4 +23,8 @@ public class QuizService {
         return quizRepository.findByUser(user);
     }
 
+    public Optional<Quiz> getQuizById(int quizId){
+        return  quizRepository.findById(quizId);
+    }
+
 }
