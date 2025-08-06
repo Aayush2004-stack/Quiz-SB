@@ -17,17 +17,19 @@
                 <th class="border px-4 py-2">Quiz Name</th>
                 <th class="border px-4 py-2">Quiz description</th>
                 <th class="border px-4 py-2">No of Questions to Play</th>
+                <th class="border px-4 py-2">Quiz Status</th>
 
 
             </tr>
         </thead>
         <tbody>
             <c:forEach var="quiz" items="${quizzes}">
-                <tr class="text-gray-800">
+                <tr class="text-gray-800 text-center">
                     <td class="border px-4 py-2">${quiz.quizId}</td>
                     <td class="border px-4 py-2">${quiz.quizName}</td>
                     <td class="border px-4 py-2">${quiz.quizDescription}</td>
                     <td class="border px-4 py-2">${quiz.noOfQuestionsToPlay}</td>
+                    <td class="border px-4 py-2">${quiz.status}</td>
                     <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/question/getQuestion/${quiz.quizId}"> See Questions</a></button></td>
 
 
