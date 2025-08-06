@@ -6,6 +6,31 @@
     <title>$</title>
 </head>
 <body>
+<form action="${pageContext.request.contextPath}/question/editQuestion/${questionId}" method="post">
+
+
+
+                <label for="title">Question title:</label><br>
+                <input type="text" name="title" required><br>
+
+                <label for="option1">Option 1:</label><br>
+                <input type="text" name="option1" required><br>
+
+                <label for="option2">Option 2:</label><br>
+                <input type="text" name="option2" required><br>
+
+                <label for="option3">Option 3:</label><br>
+                <input type="text" name="option3" required><br>
+
+                <label for="correctOption">Option 4 (Correct Option):</label><br>
+                <input type="text" name="correctOption" required><br>
+
+                <input type="submit" value="Create">
+            </form>
+
+
+
+
 
 </body>
 </html>

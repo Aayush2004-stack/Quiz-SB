@@ -56,6 +56,27 @@ public class QuestionController {
 
     }
 
+    @PostMapping("/editQuestion/{questionId}")
+    public void editQuestion( @PathVariable int questionId,@RequestParam String title, @RequestParam String option1,
+                            @RequestParam String option2,@RequestParam String option3,@RequestParam String correctOption){
+
+
+        Question question = getQuestionById(questionId);
+        question.setTitle(title);
+        question.setOption1(option1);
+        question.setOption2(option2);
+        question.setOption3(option3);
+        question.setCorrectOption(correctOption);
+
+
+        questionService.editQuestion(question);
+
+    }
+
+    public Question getQuestionById(int questionId){
+        return questionService.getQuestionsById(questionId);
+    }
+
 
 
 

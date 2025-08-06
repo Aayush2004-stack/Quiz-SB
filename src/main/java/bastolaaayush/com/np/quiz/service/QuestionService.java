@@ -18,6 +18,14 @@ public class QuestionService {
         return questionRepository.findByQuiz(quiz);
     }
 
+    public Question getQuestionsById(int questionId){
+        return questionRepository.findById(questionId).orElseThrow();
+    }
+
+    public void editQuestion(Question question){
+        questionRepository.save(question);
+    }
+
     public void addQuestion(Question question){
         questionRepository.save(question);
     }
