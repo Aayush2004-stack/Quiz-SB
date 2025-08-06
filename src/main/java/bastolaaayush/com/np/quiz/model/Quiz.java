@@ -72,8 +72,11 @@ public class Quiz {
         this.noOfQuestionsToPlay = noOfQuestionsToPlay;
     }
 
-    public Boolean isStatus() {
-        return status;
+    public String getStatus() {
+        if(status){
+            return "Active";
+        }
+        return "Not active";
     }
 
     public void setStatus(boolean status) {
