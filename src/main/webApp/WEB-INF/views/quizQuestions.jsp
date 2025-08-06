@@ -32,6 +32,7 @@
                     <td class="border px-4 py-2">${question.option2}</td>
                     <td class="border px-4 py-2">${question.option3}</td>
                     <td class="border px-4 py-2">${question.correctOption}</td>
+                    <td class="border px-4 py-2"><button> <a href="${pageContext.request.contextPath}/editQuestionView/${question.questionId}"> Edit question</a></button></td>
 
                 </tr>
             </c:forEach>
