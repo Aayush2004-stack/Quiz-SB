@@ -27,5 +27,13 @@ public class ViewController {
         return "addQuestion";
     }
 
+    @GetMapping("/editQuestionView/{questionId}")
+    public String showEditQuestionPage(@PathVariable int questionId, Model model){
+
+        model.addAttribute("questionId", questionId);
+        return "editQuestion";
+    }
+
+
 
 }
