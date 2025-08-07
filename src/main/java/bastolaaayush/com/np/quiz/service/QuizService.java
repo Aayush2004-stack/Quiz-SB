@@ -18,6 +18,9 @@ public class QuizService {
         quizRepository.save(quiz);
 
     }
+    public void deleteQuiz(int quizId){
+        quizRepository.deleteById(quizId);
+    }
 
     public List<Quiz> getQuizByUserId(User user){
         return quizRepository.findByUser(user);

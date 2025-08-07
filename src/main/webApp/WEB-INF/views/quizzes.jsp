@@ -30,6 +30,7 @@
                     <td class="border px-4 py-2">${quiz.quizDescription}</td>
                     <td class="border px-4 py-2">${quiz.noOfQuestionsToPlay}</td>
                     <td class="border px-4 py-2">${quiz.status}</td>
+                    <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/quiz/deleteQuiz/${quiz.quizId}"> Delete Quiz </a></button></td>
                     <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/question/getQuestion/${quiz.quizId}"> See Questions</a></button></td>
 
 
