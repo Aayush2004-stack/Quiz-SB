@@ -38,6 +38,22 @@ public class QuizController {
         quizService.insertQuiz(quiz);
     }
 
+    @GetMapping("/setStatus/{quizId}/{status}")
+    public String setStatus(@PathVariable int quizId, @PathVariable String status){
+        Quiz quiz =getQuizById(quizId);
+        if(status.equals("active")){
+            quiz.setStatus(false);
+            System.out.println("changing status");
+
+        }
+        else {
+            System.out.println("changing status!!!!");
+            quiz.setStatus(true);
+        }
+        quizService.setStatus(quiz);
+        return "redirect:/quiz/getQuiz";
+    }
+
     @GetMapping("/getQuiz")
     public String getQuizByUserId(HttpSession session, Model model){
         System.out.println("redirected");

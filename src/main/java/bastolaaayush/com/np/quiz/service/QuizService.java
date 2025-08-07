@@ -29,5 +29,8 @@ public class QuizService {
     public Optional<Quiz> getQuizById(int quizId){
         return  quizRepository.findById(quizId);
     }
+    public void setStatus(Quiz quiz){
+        quizRepository.save(quiz);
+    }
 
 }

@@ -74,9 +74,9 @@ public class Quiz {
 
     public String getStatus() {
         if(status){
-            return "Active";
+            return "active";
         }
-        return "Not active";
+        return "inActive";
     }
 
     public void setStatus(boolean status) {

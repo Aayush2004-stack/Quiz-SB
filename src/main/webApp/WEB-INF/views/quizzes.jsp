@@ -25,11 +25,22 @@
         <tbody>
             <c:forEach var="quiz" items="${quizzes}">
                 <tr class="text-gray-800 text-center">
+
                     <td class="border px-4 py-2">${quiz.quizId}</td>
                     <td class="border px-4 py-2">${quiz.quizName}</td>
                     <td class="border px-4 py-2">${quiz.quizDescription}</td>
                     <td class="border px-4 py-2">${quiz.noOfQuestionsToPlay}</td>
-                    <td class="border px-4 py-2">${quiz.status}</td>
+                    <td class="border px-4 py-2">
+                    <c:set var="statusLabel" value="${quiz.status == 'active' ? 'Deactivate' : 'Activate'}" />
+
+
+                        <button>
+                        <a href="${pageContext.request.contextPath}/quiz/setStatus/${quiz.quizId}/${quiz.status}">
+                        ${statusLabel}
+                        </a>
+
+                        </button>
+                        </td>
                     <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/quiz/deleteQuiz/${quiz.quizId}"> Delete Quiz </a></button></td>
                     <td class="border px-4 py-2"> <button> <a href="${pageContext.request.contextPath}/question/getQuestion/${quiz.quizId}"> See Questions</a></button></td>
 
