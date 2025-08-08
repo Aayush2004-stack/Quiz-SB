@@ -22,12 +22,13 @@ public class UserController {
    private HttpSession session;
 
     @PostMapping("/signUp")
-    public void signUp(@RequestParam String fullName, @RequestParam String username, @RequestParam String password){
+    public String signUp(@RequestParam String fullName, @RequestParam String username, @RequestParam String password){
         User user = new User();
         user.setFullName(fullName);
         user.setUsername(username);
         user.setPassword(password);
         userService.insertUser(user);
+        return"logIn";
 
     }
     @GetMapping("/logIn")
