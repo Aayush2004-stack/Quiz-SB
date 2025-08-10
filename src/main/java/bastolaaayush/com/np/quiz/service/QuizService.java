@@ -22,6 +22,10 @@ public class QuizService {
         quizRepository.deleteById(quizId);
     }
 
+    public List<Quiz> getQuiz(){
+        return quizRepository.findAll();
+    }
+
     public List<Quiz> getQuizByUserId(User user){
         return quizRepository.findByUser(user);
     }

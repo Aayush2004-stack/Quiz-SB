@@ -70,6 +70,11 @@ public class QuizController {
         return "redirect:/quiz/getQuiz";
 
     }
+    @GetMapping("/quizzes")
+    public String getQuiz(Model model){
+        model.addAttribute("availableQuizzes", quizService.getQuiz());
+        return "playQuiz";
+    }
 
     public Quiz getQuizById(int quizId){
         return quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
