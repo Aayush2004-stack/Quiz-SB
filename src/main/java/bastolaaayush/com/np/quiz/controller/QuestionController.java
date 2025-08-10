@@ -21,21 +21,25 @@ public class QuestionController {
     @Autowired
     private QuizController quizController;
 
-    @GetMapping("/getQuestion/{quizId}")
-    public String getQuestionsByQuizId(@PathVariable int quizId, Model model){
 
+    public List<Question> getQuestionsByQuizId(int quizId){
         Quiz quiz =quizController.getQuizById(quizId);
-        List<Question> questions = questionService.getQuestionsByQuizId(quiz);
-        for(Question question: questions){
-            System.out.println(question.getQuestionId());
-
-        }
-        model.addAttribute("questions", questions);
+        return questionService.getQuestionsByQuizId(quiz);
+    }
 
 
+    @GetMapping("/getQuestion/{quizId}")
+    public String getQuizQuestion(@PathVariable int quizId, Model model){
+        model.addAttribute("questions",getQuestionsByQuizId(quizId));
 
         return "quizQuestions";
+    }
 
+    @GetMapping("/playQuiz/{quizId}")
+    public String getQuestionToPlay(@PathVariable int quizId, Model model){
+        model.addAttribute("questions",getQuestionsByQuizId(quizId));
+
+        return "quizGame";
     }
 
     @PostMapping("/addQuestion")
