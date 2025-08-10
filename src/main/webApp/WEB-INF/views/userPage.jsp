@@ -82,6 +82,10 @@
   <button>
     <a href="${pageContext.request.contextPath}/quiz/getQuiz" class="btn-link">My Quizzes</a>
   </button>
+
+   <button>
+      <a href="${pageContext.request.contextPath}/quiz/quizzes" class="btn-link">Play Quizzes</a>
+    </button>
 </div>
 
 </body>
