@@ -35,6 +35,11 @@ public class QuestionController {
         return "quizQuestions";
     }
 
+    @GetMapping("/deleteQuestion/{questionId}")
+    public void deleteQuestion(@PathVariable int questionId){
+        questionService.deleteQuestion(questionId);
+    }
+
     @GetMapping("/playQuiz/{quizId}")
     public String getQuestionToPlay(@PathVariable int quizId, Model model){
         model.addAttribute("questions",getQuestionsByQuizId(quizId));
