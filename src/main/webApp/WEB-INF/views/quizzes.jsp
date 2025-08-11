@@ -94,7 +94,7 @@
  .btn-deactivate, .btn-delete {
    background-color: #e74a3b; /* red */
  }
- .btn-deactivate:hover, .btn-delete {
+ .btn-deactivate:hover, .btn-delete:hover {
    background-color: #b02a20; /* dark red */
  }
 
