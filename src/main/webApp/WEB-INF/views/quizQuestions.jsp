@@ -77,11 +77,18 @@
     font-size: 0.9rem;
     transition: background-color 0.3s ease, transform 0.1s ease;
   }
-
   .btn-link:hover {
     background-color: #2e59d9;
     transform: scale(1.05);
   }
+  .btn-delete {
+    background-color: #e74a3b; /* red */
+  }
+
+  .btn-delete:hover {
+     background-color: #b02a20; /* dark red */
+   }
+
 
   /* Make buttons full width inside cells for better tap targets */
   td button {
@@ -148,7 +155,11 @@
           <td>${question.correctOption}</td>
           <td>
             <button>
-              <a href="${pageContext.request.contextPath}/editQuestionView/${question.questionId}" class="btn-link">Edit question</a>
+              <a href="${pageContext.request.contextPath}/editQuestionView/${question.questionId}" class="btn-link">Edit</a>
+            </button>
+
+            <button>
+              <a href="${pageContext.request.contextPath}/question/deleteQuestion/${question.questionId}" onclick="return confirm('Are you sure you want to delete this quiz?');" class="btn-link btn-delete">Delete</a>
             </button>
           </td>
         </tr>
