@@ -19,11 +19,11 @@ public class QuestionController {
     private QuestionService questionService;
 
     @Autowired
-    private QuizController quizController;
+    private QuizService quizService;
 
 
     public List<Question> getQuestionsByQuizId(int quizId){
-        Quiz quiz =quizController.getQuizById(quizId);
+        Quiz quiz =quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
         return questionService.getQuestionsByQuizId(quiz);
     }
 
@@ -40,19 +40,14 @@ public class QuestionController {
         questionService.deleteQuestion(questionId);
     }
 
-    @GetMapping("/playQuiz/{quizId}")
-    public String getQuestionToPlay(@PathVariable int quizId, Model model){
-        model.addAttribute("questions",getQuestionsByQuizId(quizId));
 
-        return "quizGame";
-    }
 
     @PostMapping("/addQuestion")
     public void addQuestion(@RequestParam int quizId, @RequestParam String title, @RequestParam String option1,
                             @RequestParam String option2,@RequestParam String option3,@RequestParam String correctOption){
 
 
-        Quiz quiz =quizController.getQuizById(quizId);
+        Quiz quiz =quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
         Question question = new Question();
         question.setTitle(title);
         question.setOption1(option1);
