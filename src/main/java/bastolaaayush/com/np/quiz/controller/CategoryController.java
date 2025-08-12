@@ -36,10 +36,4 @@ public class CategoryController {
         return "createQuiz";
 
     }
-
-    public Category getCategoryById(int categoryId){
-       Optional<Category> optionalCategory = categoryService.getCategoryById(categoryId);
-        return optionalCategory.orElse(null);
-
-    }
 }
