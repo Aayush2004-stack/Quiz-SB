@@ -1,9 +1,11 @@
 package bastolaaayush.com.np.quiz.controller;
 
 import bastolaaayush.com.np.quiz.model.Category;
+import bastolaaayush.com.np.quiz.model.Question;
 import bastolaaayush.com.np.quiz.model.Quiz;
 import bastolaaayush.com.np.quiz.model.User;
 import bastolaaayush.com.np.quiz.service.CategoryService;
+import bastolaaayush.com.np.quiz.service.QuestionService;
 import bastolaaayush.com.np.quiz.service.QuizService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/quiz")
 public class QuizController {
 
     @Autowired
-    private CategoryController categoryController;
+    private CategoryService categoryService;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Autowired
     private QuizService quizService;
@@ -27,7 +31,7 @@ public class QuizController {
     @PostMapping("/insertQuiz")
     public void createQuiz(@RequestParam String quizName, @RequestParam String quizDescription, @RequestParam int noOfQuestionToPlay,@RequestParam int categoryId, HttpSession session){
         User user =(User) session.getAttribute("user");
-        Category category =  categoryController.getCategoryById(categoryId);
+        Category category =  categoryService.getCategoryById(categoryId).orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));;
         Quiz quiz = new Quiz();
         quiz.setQuizName(quizName);
         quiz.setQuizDescription(quizDescription);
@@ -80,9 +84,21 @@ public class QuizController {
         return quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
     }
 
+    @GetMapping("/playQuiz/{quizId}/{questionIndex}")
+    public String getQuestionToPlay(@PathVariable int quizId, @PathVariable int questionIndex,Model model){
+        Quiz quiz =getQuizById(quizId);
+        List<Question> questions = questionService.getQuestionsByQuizId(quiz);
 
+        if (questionIndex < 0 || questionIndex >= questions.size()) {
+            return "redirect:/quiz/result"; // Quiz finished
+        }
+        Question currentQuestion = questions.get(questionIndex);
+        model.addAttribute("question", currentQuestion);
+        model.addAttribute("index", questionIndex);
+        model.addAttribute("total", questions.size());
+        model.addAttribute("quizId", quizId);
 
-
-
+        return "quizGame";
+    }
 
 }
