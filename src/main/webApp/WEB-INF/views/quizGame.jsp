@@ -4,40 +4,45 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>$</title>
+    <title>Quiz Game</title>
 </head>
 <body>
 <main class="card">
-    <c:forEach var="question" items="${questions}">
-        <h1>${question.title}</h1>
-        <p class="subtitle">Select one of the options below:</p>
 
-        <form>
-          <fieldset>
+    <h1>Question ${index + 1} of ${total}</h1>
+    <p class="subtitle">${question.title}</p>
+
+    <form action="${pageContext.request.contextPath}/quiz/playQuiz/${quizId}/${index + 1}" method="get">
+        <fieldset>
             <div class="option">
-              <input type="radio" id="opt1" name="choice" value="option1">
-              <label for="opt1">Option 1 — ${question.option1}</label>
+                <input type="radio" id="opt1" name="choice" value="${question.option1}" required>
+                <label for="opt1">Option 1 — ${question.option1}</label>
             </div>
 
             <div class="option">
-              <input type="radio" id="opt2" name="choice" value="option2">
-              <label for="opt2">Option 2 — ${question.option2}</label>
+                <input type="radio" id="opt2" name="choice" value="${question.option2}">
+                <label for="opt2">Option 2 — ${question.option2}</label>
             </div>
 
             <div class="option">
-              <input type="radio" id="opt3" name="choice" value="option3">
-              <label for="opt3">Option 3 — ${question.option3}</label>
+                <input type="radio" id="opt3" name="choice" value="${question.option3}">
+                <label for="opt3">Option 3 — ${question.option3}</label>
             </div>
 
             <div class="option">
-              <input type="radio" id="opt4" name="choice" value="option3">
-              <label for="opt3">Option 4 — ${question.correctOption}</label>
+                <input type="radio" id="opt4" name="choice" value="${question.correctOption}">
+                <label for="opt4">Option 4 — ${question.correctOption}</label>
             </div>
-          </fieldset>
-        </form>
+        </fieldset>
 
-    </c:forEach>
-  </main>
+        <button type="submit">
+            <c:choose>
+                <c:when test="${index + 1 == total}">Finish</c:when>
+                <c:otherwise>Next</c:otherwise>
+            </c:choose>
+        </button>
+    </form>
 
+</main>
 </body>
 </html>
