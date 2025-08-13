@@ -114,7 +114,8 @@
                     <td>${quiz.quizName}</td>
                     <td>${quiz.quizDescription}</td>
                     <td>${quiz.noOfQuestionsToPlay}</td>
-                    <td><a class="btn-link btn-playQuiz" href="${pageContext.request.contextPath}/question/playQuiz/${quiz.quizId}">
+                    <c:set var="questionIndex" value="0"/>
+                    <td><a class="btn-link btn-playQuiz" href="${pageContext.request.contextPath}/quiz/playQuiz/${quiz.quizId}/${questionIndex}">
                         Play Quiz</a>
                     </td>
 
