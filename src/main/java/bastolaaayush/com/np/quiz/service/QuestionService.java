@@ -34,5 +34,13 @@ public class QuestionService {
         questionRepository.save(question);
     }
 
+    public int calculateScore(int questionId, String selectedOption, int score){
+        Question question=getQuestionsById(questionId);
+        if(question.getCorrectOption().equals(selectedOption)){
+            score++;
+        }
+        return score;
+    }
+
 
 }
