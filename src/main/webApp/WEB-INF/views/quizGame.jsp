@@ -12,25 +12,28 @@
     <h1>Question ${index + 1} of ${total}</h1>
     <p class="subtitle">${question.title}</p>
 
-    <form action="${pageContext.request.contextPath}/quiz/playQuiz/${quizId}/${index + 1}" method="get">
+    <form action="${pageContext.request.contextPath}/quiz/check/${quizId}/${index + 1}" method="post">
+        <c:if test="${empty sessionScope.score}">
+                    <c:set var="score" value="0" scope="session" />
+                </c:if>
         <fieldset>
             <div class="option">
-                <input type="radio" id="opt1" name="choice" value="${question.option1}" required>
+                <input type="radio" id="opt1" name="selectedOption" value="${question.option1}" required>
                 <label for="opt1">Option 1 — ${question.option1}</label>
             </div>
 
             <div class="option">
-                <input type="radio" id="opt2" name="choice" value="${question.option2}">
+                <input type="radio" id="opt2" name="selectedOption" value="${question.option2}">
                 <label for="opt2">Option 2 — ${question.option2}</label>
             </div>
 
             <div class="option">
-                <input type="radio" id="opt3" name="choice" value="${question.option3}">
+                <input type="radio" id="opt3" name="selectedOption" value="${question.option3}">
                 <label for="opt3">Option 3 — ${question.option3}</label>
             </div>
 
             <div class="option">
-                <input type="radio" id="opt4" name="choice" value="${question.correctOption}">
+                <input type="radio" id="opt4" name="selectedOption" value="${question.correctOption}">
                 <label for="opt4">Option 4 — ${question.correctOption}</label>
             </div>
         </fieldset>
