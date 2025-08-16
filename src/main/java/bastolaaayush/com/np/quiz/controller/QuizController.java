@@ -101,4 +101,24 @@ public class QuizController {
         return "quizGame";
     }
 
+    @PostMapping("/check/{quizId}/{questionIndex}")
+    public String checkAnswer(
+            @PathVariable int quizId,
+            @PathVariable int questionIndex,
+            @RequestParam("questionId") int questionId,
+            @RequestParam("selectedOption") String selectedOption,
+            HttpSession session) {
+
+        Integer score = (Integer) session.getAttribute("score");
+        if (score == null) score = 0;
+
+        // Calculate new score
+        score = questionService.calculateScore(questionId, selectedOption, score);
+        System.out.println("the score is:"+score);
+
+        session.setAttribute("score", score);
+
+        return "redirect:/quiz/playQuiz/" + quizId + "/" + (questionIndex + 1);
+    }
+
 }
