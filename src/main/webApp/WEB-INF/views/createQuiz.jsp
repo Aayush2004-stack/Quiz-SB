@@ -11,34 +11,40 @@
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
+    background: radial-gradient(circle at top left, #1b1f3b 0%, #0f2027 50%, #0a0f1e 100%);
+    color: #f0f0f0;
     min-height: 100vh;
-    padding: 0;
   }
 
   .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px 20px 20px 20px; /* space below nav */
-    min-height: calc(100vh - 80px);
+    padding: 100px 20px 40px 20px; /* offset for sticky navbar */
   }
 
   .form-container {
-    background: #222;
+    background: rgba(34, 42, 74, 0.9);
     padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.65);
     width: 400px;
-    color: #eee;
+    backdrop-filter: blur(6px);
+  }
+
+  h2 {
+    text-align: center;
+    color: #5b8def;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    font-weight: 700;
   }
 
   label {
     display: block;
     margin-top: 15px;
     font-weight: 600;
-    font-size: 1rem;
-    color: #ddd;
+    color: #c9c9c9;
   }
 
   input[type="text"],
@@ -48,13 +54,12 @@
     width: 100%;
     padding: 10px 15px;
     margin-top: 6px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
     font-size: 1rem;
-    background: #333;
-    color: #eee;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(0,0,0,0.3);
+    color: #f0f0f0;
+    transition: all 0.3s ease;
     resize: vertical;
   }
 
@@ -62,27 +67,28 @@
   input[type="number"]:focus,
   textarea:focus,
   select:focus {
-    background-color: #444;
+    background: rgba(0,0,0,0.5);
+    border-color: #4e73df;
+    box-shadow: 0 0 8px rgba(78,115,223,0.4);
     outline: none;
-    box-shadow: 0 0 8px #4e73df;
   }
 
   button[type="submit"] {
     margin-top: 25px;
     width: 100%;
     padding: 14px 0;
-    background: linear-gradient(90deg, #4e73df, #224abe);
+    background: linear-gradient(90deg, #1cc88a, #13855c);
     border: none;
-    border-radius: 10px;
-    color: white;
+    border-radius: 12px;
+    color: #fff;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition: all 0.3s ease;
   }
 
   button[type="submit"]:hover {
-    background: linear-gradient(90deg, #224abe, #1a2c6f);
+    background: linear-gradient(90deg, #17a673, #0f6c55);
     transform: scale(1.03);
   }
 </style>
@@ -93,6 +99,7 @@
 
 <div class="main-content">
     <div class="form-container">
+        <h2>Create New Quiz</h2>
         <form action="${pageContext.request.contextPath}/quiz/insertQuiz" method="post">
 
             <label for="quizName">Quiz Name:</label>
