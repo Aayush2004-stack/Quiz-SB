@@ -43,11 +43,19 @@ public class QuestionController {
 
 
     @PostMapping("/addQuestion")
-    public void addQuestion(@RequestParam int quizId, @RequestParam String title, @RequestParam String option1,
-                            @RequestParam String option2,@RequestParam String option3,@RequestParam String correctOption){
+    public String addQuestion(@RequestParam int quizId,
+                              @RequestParam String title,
+                              @RequestParam String option1,
+                              @RequestParam String option2,
+                              @RequestParam String option3,
+                              @RequestParam String correctOption,
+                              Model model) {
 
 
-        Quiz quiz =quizService.getQuizById(quizId).orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
+
+        Quiz quiz = quizService.getQuizById(quizId)
+                .orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
+
         Question question = new Question();
         question.setTitle(title);
         question.setOption1(option1);
@@ -57,7 +65,13 @@ public class QuestionController {
         question.setQuiz(quiz);
 
         questionService.addQuestion(question);
+        // Reload questions for the same page
+        model.addAttribute("quizId", quizId);
+        model.addAttribute("questions", questionService.getQuestionsByQuizId(quiz));
 
+
+
+        return "addQuestion"; // same JSP page
     }
 
     @PostMapping("/editQuestion/{questionId}")
