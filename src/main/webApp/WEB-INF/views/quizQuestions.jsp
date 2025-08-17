@@ -131,7 +131,7 @@
 <body>
 
 <div class="container">
-  <h1>All Quiz Details</h1>
+  <h1>All Question Details</h1>
   <table>
     <thead>
       <tr>
@@ -159,7 +159,7 @@
             </button>
 
             <button>
-              <a href="${pageContext.request.contextPath}/question/deleteQuestion/${question.questionId}" onclick="return confirm('Are you sure you want to delete this quiz?');" class="btn-link btn-delete">Delete</a>
+              <a href="${pageContext.request.contextPath}/question/deleteQuestion/${question.questionId}" onclick="return confirm('Are you sure you want to delete this question?');" class="btn-link btn-delete">Delete</a>
             </button>
           </td>
         </tr>
