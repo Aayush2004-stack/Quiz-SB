@@ -31,7 +31,7 @@ public class QuizController {
     private QuizService quizService;
 
     @PostMapping("/insertQuiz")
-    public void createQuiz(@RequestParam String quizName, @RequestParam String quizDescription, @RequestParam int noOfQuestionToPlay,@RequestParam int categoryId, HttpSession session){
+    public String createQuiz(@RequestParam String quizName, @RequestParam String quizDescription, @RequestParam int noOfQuestionToPlay,@RequestParam int categoryId, HttpSession session){
         User user =(User) session.getAttribute("user");
         Category category =  categoryService.getCategoryById(categoryId).orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));;
         Quiz quiz = new Quiz();
@@ -42,6 +42,7 @@ public class QuizController {
         quiz.setCategory(category);
 
         quizService.insertQuiz(quiz);
+        return "userPage";
     }
 
     @GetMapping("/setStatus/{quizId}/{status}")
