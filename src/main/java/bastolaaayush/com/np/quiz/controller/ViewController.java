@@ -34,6 +34,11 @@ public class ViewController {
         return "editQuestion";
     }
 
+    @GetMapping("/userHome")
+    public String showUserHome(){
+        return "userPage";
+    }
+
 
 
 }
