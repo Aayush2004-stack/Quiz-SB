@@ -12,10 +12,9 @@
     <h1>Question ${index + 1} of ${total}</h1>
     <p class="subtitle">${question.title}</p>
 
-    <form action="${pageContext.request.contextPath}/quiz/check/${quizId}/${index + 1}" method="post">
-        <c:if test="${empty sessionScope.score}">
-                    <c:set var="score" value="0" scope="session" />
-                </c:if>
+    <form action="${pageContext.request.contextPath}/quiz/check/${quizId}/${index}" method="post">
+
+         <input type="hidden" name="questionId" value="${question.questionId}"/>
         <fieldset>
             <div class="option">
                 <input type="radio" id="opt1" name="selectedOption" value="${question.option1}" required>
