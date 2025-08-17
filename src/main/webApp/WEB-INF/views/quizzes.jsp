@@ -109,6 +109,25 @@
 <div class="main-content">
   <h1>My Quizzes</h1>
 
+  <c:if test="${not empty msg}">
+      <div id="popupMsg"
+           class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                  bg-yellow-500 text-white px-6 py-4 rounded-lg shadow-lg animate-fadeIn">
+          ${msg}
+      </div>
+
+      <script>
+          setTimeout(() => {
+              const msg = document.getElementById('popupMsg');
+              if(msg){
+                  msg.classList.add('opacity-0'); // fade out
+                  setTimeout(() => msg.remove(), 500); // remove after fade
+              }
+          }, 2000); // show for 2 seconds
+      </script>
+
+  </c:if>
+
   <div class="card-container">
       <c:forEach var="quiz" items="${quizzes}">
           <div class="quiz-card">
