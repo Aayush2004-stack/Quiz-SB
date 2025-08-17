@@ -6,20 +6,26 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Create Quiz</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1c1c1c, #3a3a3a); /* Smooth dark gray */
+    background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    padding: 80px 20px 20px 20px; /* space below nav */
+    min-height: calc(100vh - 80px);
   }
 
   .form-container {
-    background: #222; /* Dark form background */
+    background: #222;
     padding: 30px 40px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.6);
@@ -83,27 +89,31 @@
 </head>
 <body>
 
-<div class="form-container">
-    <form action="${pageContext.request.contextPath}/quiz/insertQuiz" method="post">
+<%@ include file="/WEB-INF/views/navBar.jsp" %>
 
-        <label for="quizName">Quiz Name:</label>
-        <input type="text" name="quizName" id="quizName" required>
+<div class="main-content">
+    <div class="form-container">
+        <form action="${pageContext.request.contextPath}/quiz/insertQuiz" method="post">
 
-        <label for="quizDescription">Quiz Description:</label>
-        <textarea name="quizDescription" id="quizDescription" rows="4" required></textarea>
+            <label for="quizName">Quiz Name:</label>
+            <input type="text" name="quizName" id="quizName" required>
 
-        <label for="noOfQuestionToPlay">Number of Questions to Play:</label>
-        <input type="number" name="noOfQuestionToPlay" id="noOfQuestionToPlay" min="1" required>
+            <label for="quizDescription">Quiz Description:</label>
+            <textarea name="quizDescription" id="quizDescription" rows="4" required></textarea>
 
-        <label for="categoryId">Select Category:</label>
-        <select name="categoryId" id="categoryId" required>
-            <c:forEach var="category" items="${categories}">
-                <option value="${category.categoryId}">${category.categoryName}</option>
-            </c:forEach>
-        </select>
+            <label for="noOfQuestionToPlay">Number of Questions to Play:</label>
+            <input type="number" name="noOfQuestionToPlay" id="noOfQuestionToPlay" min="1" required>
 
-        <button type="submit">Create Quiz</button>
-    </form>
+            <label for="categoryId">Select Category:</label>
+            <select name="categoryId" id="categoryId" required>
+                <c:forEach var="category" items="${categories}">
+                    <option value="${category.categoryId}">${category.categoryName}</option>
+                </c:forEach>
+            </select>
+
+            <button type="submit">Create Quiz</button>
+        </form>
+    </div>
 </div>
 
 </body>
