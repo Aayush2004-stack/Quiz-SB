@@ -4,107 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-                font-family: Arial, sans-serif;
-                background: linear-gradient(135deg, #1c1c1c, #3a3a3a); /* Smooth dark gray */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .form-container {
-                background: #fff;
-                padding: 30px 40px;
-                border-radius: 15px;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-                width: 350px;
-                animation: fadeIn 0.5s ease-in-out;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                            color: #2e59d9; /* Standard professional blue */
-                            font-weight: bold;
-                            margin-bottom: 20px;
-            }
-
-            label {
-                font-weight: bold;
-                display: block;
-                margin-top: 15px;
-                color: #333;
-            }
-
-            input[type="username"],
-            input[type="password"] {
-                width: 100%;
-                padding: 12px 15px;
-                margin-top: 8px;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                outline: none;
-                font-size: 14px;
-                transition: all 0.3s ease;
-            }
-
-            input[type="username"]:focus,
-            input[type="password"]:focus {
-                border-color: #4e73df;
-                box-shadow: 0 0 8px rgba(78, 115, 223, 0.4);
-            }
-
-            input[type="submit"] {
-                width: 100%;
-                padding: 12px;
-                margin-top: 20px;
-                background: linear-gradient(90deg, #1cc88a, #17a673);
-                color: white;
-                border: none;
-                border-radius: 8px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background 0.3s ease, transform 0.1s ease;
-            }
-
-            input[type="submit"]:hover {
-                background: linear-gradient(90deg, #17a673, #13855c);
-                transform: scale(1.03);
-            }
-
-            input[type="submit"]:active {
-                transform: scale(0.98);
-            }
-
-            @keyframes fadeIn {
-                from {opacity: 0; transform: translateY(-10px);}
-                to {opacity: 1; transform: translateY(0);}
-            }
-
-            /* Responsive */
-            @media (max-width: 400px) {
-                .form-container {
-                    width: 90%;
-                    padding: 20px;
-                }
-            }
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b); /* dark navy slate */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f1f5f9;
+        }
+        .form-card {
+            background: rgba(30, 41, 59, 0.9); /* semi-transparent slate */
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 40px 35px;
+            width: 380px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-15px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 14px;
+            margin-top: 10px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            outline: none;
+            color: #f1f5f9;
+            font-size: 0.95rem;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .input-field:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56,189,248,0.4);
+        }
+        .submit-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 12px;
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.1s, background 0.3s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #1d4ed8, #4338ca);
+            transform: scale(1.03);
+        }
+        .register-section {
+            margin-top: 18px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+        .register-section a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 22px;
+            background: linear-gradient(90deg, #14b8a6, #0d9488);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.1s;
+        }
+        .register-section a:hover {
+            background: linear-gradient(90deg, #0d9488, #0f766e);
+            transform: scale(1.03);
+        }
     </style>
 </head>
 <body>
- <div class="form-container">
-            <form action="${pageContext.request.contextPath}/user/logIn" method="get">
-            <h1 class ="text-4xl font-bold mb-8 text-center text-navy-800">Enter Your Details</h1>
+    <div class="form-card">
+        <form action="${pageContext.request.contextPath}/user/logIn" method="post">
+            <h1 class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+                Log In
+            </h1>
 
-                <label for="username">username:</label><br>
-                <input type="username" id="username" name="username" required><br>
+            <label for="username" class="block mt-3 text-sm font-semibold">Username</label>
+            <input type="text" id="username" name="username" class="input-field" required>
 
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" required><br>
+            <label for="password" class="block mt-3 text-sm font-semibold">Password</label>
+            <input type="password" id="password" name="password" class="input-field" required>
 
-                <input type="submit" value="Log In">
-            </form>
+            <input type="submit" value="Log In" class="submit-btn">
+        </form>
+
+        <div class="register-section">
+            <p>Don’t have an account?</p>
+            <a href="${pageContext.request.contextPath}/signUpView">Register</a>
         </div>
+    </div>
 </body>
 </html>
