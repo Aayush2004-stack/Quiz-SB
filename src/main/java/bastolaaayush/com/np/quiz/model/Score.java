@@ -13,6 +13,8 @@ public class Score {
     private int scoreId; //pk
 
     private int score;
+
+    @Column(name = "playedDate", insertable = false)
     private Date playedDate;
 
     // many scores belong to one user
@@ -24,6 +26,22 @@ public class Score {
     @ManyToOne
     @JoinColumn(name = "quizId", nullable = false)
     private Quiz quiz; //fk
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Date getPlayedDate() {
+        return playedDate;
+    }
+
+    public void setPlayedDate(Date playedDate) {
+        this.playedDate = playedDate;
+    }
 
     public int getScoreId() {
         return scoreId;
