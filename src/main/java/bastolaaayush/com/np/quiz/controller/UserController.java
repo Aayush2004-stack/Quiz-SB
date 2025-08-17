@@ -31,7 +31,7 @@ public class UserController {
         return"logIn";
 
     }
-    @GetMapping("/logIn")
+    @PostMapping("/logIn")
     public String logIn(@RequestParam String username, @RequestParam String password){
         User user = userService.logIn(username, password);
         if(user!=null){
