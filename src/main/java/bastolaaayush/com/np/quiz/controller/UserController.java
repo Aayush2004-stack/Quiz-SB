@@ -50,4 +50,9 @@ public class UserController {
         }
 
     }
+    @GetMapping("/logOut")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Invalidate the session to log out the user
+        return "home";
+    }
 }
