@@ -11,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/quiz")
@@ -46,17 +50,26 @@ public class QuizController {
     }
 
     @GetMapping("/setStatus/{quizId}/{status}")
-    public String setStatus(@PathVariable int quizId, @PathVariable String status){
-        Quiz quiz =getQuizById(quizId);
-        if(status.equals("active")){
-            quiz.setStatus(false);
-            System.out.println("changing status");
+    public String setStatus(@PathVariable int quizId,
+                            @PathVariable String status,
+                            RedirectAttributes redirectAttributes) {
+        Quiz quiz = getQuizById(quizId);
+        List<Question> questions = questionService.getQuestionsByQuizId(quiz);
+        int quizQuestions = questions.size();
 
+        if (status.equals("active")) {
+            quiz.setStatus(false);
+            redirectAttributes.addFlashAttribute("msg", "Quiz has been deactivated.");
+        }
+        else if (quiz.getNoOfQuestionsToPlay() <= quizQuestions) {
+            quiz.setStatus(true);
+            redirectAttributes.addFlashAttribute("msg", "Quiz activated successfully!");
         }
         else {
-            System.out.println("changing status!!!!");
-            quiz.setStatus(true);
+            redirectAttributes.addFlashAttribute("msg",
+                    "Not enough questions! Need at least " + quiz.getNoOfQuestionsToPlay() + " to activate.");
         }
+
         quizService.setStatus(quiz);
         return "redirect:/quiz/getQuiz";
     }
@@ -79,7 +92,17 @@ public class QuizController {
     }
     @GetMapping("/quizzes")
     public String getQuiz(Model model){
-        model.addAttribute("availableQuizzes", quizService.getQuiz());
+        List<Quiz> quizzes = quizService.getQuiz(); // your existing method
+
+        // Group quizzes by category
+        Map<String, List<Quiz>> categoryQuizMap = new LinkedHashMap<>();
+
+        for (Quiz quiz : quizzes) {
+            String categoryName = quiz.getCategory().getCategoryName(); // get category name
+            categoryQuizMap.computeIfAbsent(categoryName, k -> new ArrayList<>()).add(quiz);
+        }
+
+        model.addAttribute("categoryQuizMap", categoryQuizMap);
         return "playQuiz";
     }
 
@@ -103,6 +126,9 @@ public class QuizController {
             score.setUser(user);
             score.setScore(userScore);
             scoreService.insertScore(score);
+
+            model.addAttribute("score", userScore);
+            session.removeAttribute("score");
 
             return "result"; // Quiz finished
         }
