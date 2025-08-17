@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.tailwindcss.com"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Quizzes</title>
@@ -13,7 +14,6 @@
     background: linear-gradient(135deg, #1b1f3b, #0f2027);
     color: #f0f0f0;
     min-height: 100vh;
-    padding: 20px;
   }
 
   h1 {
@@ -24,106 +24,91 @@
     color: #4e73df;
   }
 
-  .container {
+  /* Space below fixed nav */
+  .main-content {
+    padding: 90px 20px 20px 20px; /* adjust top padding if nav height changes */
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .quiz-card {
     background: #222a4a;
-    padding: 25px;
     border-radius: 12px;
+    padding: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #1e2546;
-    box-shadow: inset 0 0 10px #0008;
-    color: #ddd;
+  .quiz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.8);
   }
 
-  thead tr {
-    background-color: #4e73df;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 700;
+  .quiz-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #4e73df;
   }
 
-  th, td {
-    padding: 12px 15px;
-    border: 1px solid #3a3f6b;
-    text-align: center;
-    font-size: 1rem;
+  .quiz-desc {
+    font-size: 0.95rem;
+    color: #c9c9c9;
+    margin-bottom: 15px;
   }
 
-  tbody tr:nth-child(even) {
-    background-color: #2a3055;
+  .quiz-info {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: #aaa;
   }
 
-  tbody tr:hover {
-    background-color: #3f4ba5;
-    color: #fff;
-    cursor: default;
-  }
-
-  /* Button base style */
+  /* Button style */
   .btn-link {
     display: inline-block;
-    padding: 8px 15px;
+    padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: background-color 0.3s ease, transform 0.1s ease;
     color: white;
   }
-   .btn-playQuiz {
-      background-color: #13855c; /* dark green */
-    }
-   .btn-playQuiz:hover {
-      background-color: #1cc88a; /* light green */
-    }
-
-  /* Remove default button styling */
-  button {
-    border: none;
-    background: none;
-    padding: 0;
+  .btn-playQuiz {
+    background-color: #13855c; /* dark green */
+  }
+  .btn-playQuiz:hover {
+    background-color: #1cc88a; /* light green */
   }
 </style>
 </head>
 <body>
 
-<h1>Available Quizzes</h1>
+<%@ include file="/WEB-INF/views/navBar.jsp" %>
 
-<div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Quiz Name</th>
-                <th>Quiz Description</th>
-                <th>No of Questions to Play</th>
+<div class="main-content">
+    <h1>Available Quizzes</h1>
 
-
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="quiz" items="${availableQuizzes}">
-                <tr>
-                    <td>${quiz.quizId}</td>
-                    <td>${quiz.quizName}</td>
-                    <td>${quiz.quizDescription}</td>
-                    <td>${quiz.noOfQuestionsToPlay}</td>
-                    <c:set var="questionIndex" value="0"/>
-                    <td><a class="btn-link btn-playQuiz" href="${pageContext.request.contextPath}/quiz/playQuiz/${quiz.quizId}/${questionIndex}">
-                        Play Quiz</a>
-                    </td>
-
-
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+    <div class="card-container">
+        <c:forEach var="quiz" items="${availableQuizzes}">
+            <div class="quiz-card">
+                <div class="quiz-title">${quiz.quizName}</div>
+                <div class="quiz-desc">${quiz.quizDescription}</div>
+                <div class="quiz-info">Questions: ${quiz.noOfQuestionsToPlay}</div>
+                <c:set var="questionIndex" value="0"/>
+                <a class="btn-link btn-playQuiz"
+                   href="${pageContext.request.contextPath}/quiz/playQuiz/${quiz.quizId}/${questionIndex}">
+                   Play Quiz
+                </a>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 
 </body>
