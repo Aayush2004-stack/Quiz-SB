@@ -1,13 +1,12 @@
 package bastolaaayush.com.np.quiz.controller;
 
-import bastolaaayush.com.np.quiz.model.Category;
-import bastolaaayush.com.np.quiz.model.Question;
-import bastolaaayush.com.np.quiz.model.Quiz;
-import bastolaaayush.com.np.quiz.model.User;
+import bastolaaayush.com.np.quiz.model.*;
 import bastolaaayush.com.np.quiz.service.CategoryService;
 import bastolaaayush.com.np.quiz.service.QuestionService;
 import bastolaaayush.com.np.quiz.service.QuizService;
+import bastolaaayush.com.np.quiz.service.ScoreService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/quiz")
 public class QuizController {
+
+    @Autowired
+    private ScoreService scoreService;
 
     @Autowired
     private CategoryService categoryService;
@@ -85,18 +87,28 @@ public class QuizController {
     }
 
     @GetMapping("/playQuiz/{quizId}/{questionIndex}")
-    public String getQuestionToPlay(@PathVariable int quizId, @PathVariable int questionIndex,Model model){
+    public String getQuestionToPlay(@PathVariable int quizId, @PathVariable int questionIndex, Model model, HttpSession  session){
         Quiz quiz =getQuizById(quizId);
         List<Question> questions = questionService.getQuestionsByQuizId(quiz);
 
+        model.addAttribute("total", questions.size());
+        model.addAttribute("quizId", quizId);
+
         if (questionIndex < 0 || questionIndex >= questions.size()) {
-            return "redirect:/quiz/result"; // Quiz finished
+            User user = (User) session.getAttribute("user");
+            Integer userScore = (Integer) session.getAttribute("score");
+            Score score =new Score();
+            score.setQuiz(quiz);
+            score.setUser(user);
+            score.setScore(userScore);
+            scoreService.insertScore(score);
+
+            return "result"; // Quiz finished
         }
         Question currentQuestion = questions.get(questionIndex);
         model.addAttribute("question", currentQuestion);
         model.addAttribute("index", questionIndex);
-        model.addAttribute("total", questions.size());
-        model.addAttribute("quizId", quizId);
+
 
         return "quizGame";
     }
