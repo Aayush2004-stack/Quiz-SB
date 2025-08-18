@@ -57,6 +57,11 @@ public class ViewController {
         return "userPage";
     }
 
+    @GetMapping("/addCategory")
+    public String showAddCategory(){
+        return "addCategory";
+    }
+
 
 
 }
