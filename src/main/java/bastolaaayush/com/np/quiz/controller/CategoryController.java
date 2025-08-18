@@ -20,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/addCategory")
+    @PostMapping
     public void addCategory(@RequestParam String categoryName, @RequestParam String categoryDescription){
         Category category = new Category();
         category.setCategoryName(categoryName);
