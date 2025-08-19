@@ -1,6 +1,7 @@
 package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -16,10 +17,11 @@ public class Quiz {
     private String quizDescription;
     private int noOfQuestionsToPlay;
 
-    @Column(name = "status", insertable = false)
-    private Boolean status;
+    @Column(name = "status", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+    private Boolean status= false;
 
-    @Column(name ="createdDate", insertable = false)
+    @CreationTimestamp
+    @Column(name ="createdDate", nullable = false,updatable = false)
     private Date createdDate;
 
     // many quizzes belong to one user
