@@ -21,11 +21,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public void addCategory(@RequestParam String categoryName, @RequestParam String categoryDescription){
+    public String addCategory(@RequestParam String categoryName, @RequestParam String categoryDescription){
         Category category = new Category();
         category.setCategoryName(categoryName);
         category.setCategoryDescription(categoryDescription);
         categoryService.insertCategory(category);
+        return "adminPage";
 
     }
 
