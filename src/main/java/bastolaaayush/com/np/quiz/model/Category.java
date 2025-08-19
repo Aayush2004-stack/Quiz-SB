@@ -1,6 +1,7 @@
 package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -15,7 +16,8 @@ public class Category {
     private String categoryName;
     private String categoryDescription;
 
-    @Column(name = "createdDate", insertable = false)
+    @CreationTimestamp
+    @Column(name = "createdDate", updatable = false, nullable = false)
     private Date createdDate;
 
     public int getCategoryId() {
