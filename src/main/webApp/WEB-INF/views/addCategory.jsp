@@ -21,7 +21,7 @@
         <h1 class="text-3xl font-bold text-blue-400 mb-8">Add a New Category</h1>
 
         <div class="bg-gray-800 shadow-lg rounded-xl p-8 w-full max-w-md">
-            <form action="${pageContext.request.contextPath}/category/addCategory" method="post" class="space-y-6">
+            <form action="${pageContext.request.contextPath}/category" method="post" class="space-y-6">
 
                 <!-- Category Name -->
                 <div>
