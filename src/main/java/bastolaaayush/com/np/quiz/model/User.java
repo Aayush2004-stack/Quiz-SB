@@ -1,6 +1,7 @@
 package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -17,11 +18,13 @@ public class User {
     private String password;
 
     //has default value
-    @Column(name = "isAdmin", insertable = false )
-    private Boolean isAdmin;
+    @Column(name = "isAdmin", columnDefinition = "BOOLEAN DEFAULT false")
+    private Boolean isAdmin= false;
 
-    @Column(name = "joinedDate", insertable = false)
+    @CreationTimestamp
+    @Column(name = "joinedDate", updatable = false, nullable = false)
     private Date joinedDate;
+
 
     public Date getJoinedDate() {
         return joinedDate;
