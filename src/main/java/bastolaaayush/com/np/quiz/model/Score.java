@@ -1,6 +1,7 @@
 package bastolaaayush.com.np.quiz.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -14,7 +15,8 @@ public class Score {
 
     private int score;
 
-    @Column(name = "playedDate", insertable = false)
+    @CreationTimestamp
+    @Column(name = "playedDate", updatable = false, nullable = false)
     private Date playedDate;
 
     // many scores belong to one user
