@@ -17,7 +17,7 @@ public class Quiz {
     private String quizDescription;
     private int noOfQuestionsToPlay;
 
-    @Column(name = "status", nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+    @Column(name = "status", columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean status= false;
 
     @CreationTimestamp
