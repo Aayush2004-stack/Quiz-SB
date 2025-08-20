@@ -19,7 +19,7 @@ public class ViewController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/homeView")
+    @GetMapping("/")
     public String showMainPage(){
         return "home";
     }
